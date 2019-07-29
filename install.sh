@@ -62,7 +62,7 @@ if [[ "$arg" == "-i" || "$arg" == "--install" ]]; then
 	install_Vundle
 	;;
 
-	"4")echo -e "Bye"
+	"4")echo -e "Installing everything..."
 	install_Brew
 	install_OhMyZsh
 	install_Vundle
