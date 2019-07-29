@@ -102,6 +102,7 @@ alias ga="git add"
 alias gaa="git add ."
 
 . /usr/local/etc/profile.d/z.sh
+source .fzf.zsh
 
 fortune | cowsay
 export GPG_TTY=$(tty)
