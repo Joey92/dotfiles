@@ -4,6 +4,37 @@
 CWD=$(pwd)
 arg=$1
 
+function install_OhMyZsh {
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+}
+
+function install_Brew {
+	/usr/local/bin/brew
+	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	brew install $(< brew-packages)
+	# To install useful key bindings and fuzzy completion:
+	$(brew --prefix)/opt/fzf/install
+}
+
+function install_Vundle {
+	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+}
+
+function backup {
+	mv -iv ~/$1 ~/$1.old
+}
+
+function symlink {
+	ln -sfnv $CWD/$1 ~/$1
+}
+
+function updateDotfile {
+	echo -e "Backing up $1"
+	backup $1
+	echo -e "Adding symlinks ~/$1"
+	symlink $1
+}
+
 echo -e "Setting up Dotfiles..."
 
 if [[ "$arg" == "-i" || "$arg" == "--install" ]]; then
@@ -11,6 +42,7 @@ if [[ "$arg" == "-i" || "$arg" == "--install" ]]; then
 	echo -e "  1) for Oh-My-Zsh"
 	echo -e "  2) for brew install packages"
 	echo -e "  3) for Vundle"
+	echo -e "  4) for all"
 	echo -e "  0) to Exit"
 
 	read option
@@ -18,18 +50,22 @@ if [[ "$arg" == "-i" || "$arg" == "--install" ]]; then
 	case $option in
 
 	"1")echo -e "Installing Oh-My-Zsh..."
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+	install_OhMyZsh
 	;;
 
 	
 	"2")echo -e "Installing Brew packages..."
-	# brew install $(< brew-packages)
-	# To install useful key bindings and fuzzy completion:
-	$(brew --prefix)/opt/fzf/install
+	install_Brew
 	;;
 
 	"3")echo -e "Installing Vundle..."
-	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+	install_Vundle
+	;;
+
+	"4")echo -e "Bye"
+	install_Brew
+	install_OhMyZsh
+	install_Vundle
 	;;
 
 	"0")echo -e "Bye"
@@ -44,19 +80,11 @@ if [[ "$arg" == "-i" || "$arg" == "--install" ]]; then
 	exit 0
 fi
 
-echo -e "Backing up old files"
-mv -iv ~/.fzf.zsh ~/.fzf.zsh.old
-mv -iv ~/.zshrc ~/.zshrc.old
-mv -iv ~/.vimrc ~/.vimrc.old
-mv -iv ~/.tmux.conf ~/.tmux.conf.old
-mv -iv ~/.gitconfig ~/.gitconfig.old
-
-echo -e "Adding symlinks..."
-ln -sfnv $CWD/.fzf.zsh ~/.fzf.zsh
-ln -sfnv $CWD/.zshrc ~/.zshrc
-ln -sfnv $CWD/.vimrc ~/.vimrc
-ln -sfnv $CWD/.tmux.conf ~/.tmux.conf
-ln -sfnv $CWD/.gitconfig ~/.gitconfig
+updateDotfile .fzf.zsh
+updateDotfile .zshrc
+updateDotfile .vimrc
+updateDotfile .tmux.conf
+updateDotfile .gitconfig
 
 echo -e "Done."
 
