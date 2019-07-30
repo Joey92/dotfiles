@@ -100,6 +100,7 @@ alias gca="git commit --amend -m"
 alias gs="git status"
 alias ga="git add"
 alias gaa="git add ."
+alias gp="git push"
 
 . /usr/local/etc/profile.d/z.sh
 source .fzf.zsh
