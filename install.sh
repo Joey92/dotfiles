@@ -84,7 +84,6 @@ updateDotfile .fzf.zsh
 updateDotfile .zshrc
 updateDotfile .vimrc
 updateDotfile .tmux.conf
-updateDotfile .gitconfig
 
 echo -e "Done."
 
