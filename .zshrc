@@ -103,7 +103,6 @@ alias gaa="git add ."
 alias gp="git push"
 
 . /usr/local/etc/profile.d/z.sh
-source .fzf.zsh
 
 fortune | cowsay
 export GPG_TTY=$(tty)
@@ -113,3 +112,5 @@ export HELM_HOME=~/helm
 source ~/.zshrc_override 
 
 eval $(thefuck --alias)
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

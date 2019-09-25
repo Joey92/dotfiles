@@ -35,6 +35,17 @@ function updateDotfile {
 	symlink $1
 }
 
+function install_PowerlineFont {
+    # clone
+    git clone https://github.com/powerline/fonts.git --depth=1
+    # install
+    cd fonts
+    ./install.sh
+    # clean-up a bit
+    cd ..
+    rm -rf fonts
+}
+
 echo -e "Setting up Dotfiles..."
 
 if [[ "$arg" == "-i" || "$arg" == "--install" ]]; then
@@ -63,7 +74,8 @@ if [[ "$arg" == "-i" || "$arg" == "--install" ]]; then
 	;;
 
 	"4")echo -e "Installing everything..."
-	install_Brew
+	install_PowerlineFont
+    install_Brew
 	install_OhMyZsh
 	install_Vundle
 	;;
