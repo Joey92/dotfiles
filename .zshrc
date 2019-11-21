@@ -102,6 +102,8 @@ alias ga="git add"
 alias gaa="git add ."
 alias gp="git push"
 
+alias ducks='du -cksh * | sort -hr | head -n 15'
+
 . /usr/local/etc/profile.d/z.sh
 
 fortune | cowsay
