@@ -12,6 +12,7 @@ function install_Brew {
 	/usr/local/bin/brew
 	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	brew install $(< brew-packages)
+	brew cask install $(< brew-cask-packages)
 	# To install useful key bindings and fuzzy completion:
 	$(brew --prefix)/opt/fzf/install
 }
