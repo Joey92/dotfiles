@@ -95,7 +95,8 @@ source $ZSH/oh-my-zsh.sh
 alias zshconfig="vim ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias gc="git commit -m"
-alias gca="git commit --amend -m"
+alias gcam="git commit --amend -m"
+alias gca="git commit --amend"
 
 alias gs="git status"
 alias ga="git add"
