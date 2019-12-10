@@ -97,6 +97,7 @@ alias zshconfig="vim ~/.zshrc"
 alias gc="git commit -m"
 alias gcam="git commit --amend -m"
 alias gca="git commit --amend"
+alias gpfl="git push --force-with-lease origin $(git rev-parse --abbrev-ref HEAD)"
 
 alias gs="git status"
 alias ga="git add"
