@@ -36,6 +36,14 @@ function updateDotfile {
 	symlink $1
 }
 
+function install_Scripts {
+	FILES=$CWD/scripts/*
+	for f in $FILES
+	do
+		ln -sfnv $f /usr/local/bin/$(basename $f)
+	done
+}
+
 function install_PowerlineFont {
     # clone
     git clone https://github.com/powerline/fonts.git --depth=1
@@ -54,7 +62,8 @@ if [[ "$arg" == "-i" || "$arg" == "--install" ]]; then
 	echo -e "  1) for Oh-My-Zsh"
 	echo -e "  2) for brew install packages"
 	echo -e "  3) for Vundle"
-	echo -e "  4) for all"
+	echo -e "  4) for Scripts"
+	echo -e "  5) for all"
 	echo -e "  0) to Exit"
 
 	read option
@@ -74,11 +83,16 @@ if [[ "$arg" == "-i" || "$arg" == "--install" ]]; then
 	install_Vundle
 	;;
 
-	"4")echo -e "Installing everything..."
+	"4")echo -e "Installing scripts..."
+	install_Scripts
+	;;
+
+	"5")echo -e "Installing everything..."
 	install_PowerlineFont
-    install_Brew
+	install_Brew
 	install_OhMyZsh
 	install_Vundle
+	install_Scripts
 	;;
 
 	"0")echo -e "Bye"
