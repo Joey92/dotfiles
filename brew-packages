@@ -2,7 +2,7 @@ cmake
 cocoapods
 coreutils
 cowsay
-macvim
+vim
 cpanminus
 dep
 docker-compose
