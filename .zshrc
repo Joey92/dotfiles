@@ -97,13 +97,25 @@ alias zshconfig="vim ~/.zshrc"
 alias gc="git commit -m"
 alias gcam="git commit --amend -m"
 alias gca="git commit --amend"
-alias gpfl="git push --force-with-lease origin $(git rev-parse --abbrev-ref HEAD)"
+alias gpfl="git push --force-with-lease"
 
 alias gs="git status"
 alias ga="git add"
 alias gaa="git add ."
 alias gp="git push"
 
+alias k="kubectl"
+alias kx="kubectx"
+alias kn="kubens"
+alias kgp="kubectl get pods"
+alias ktp="kubectl top pod"
+alias ktpn="kubectl top pod -n"
+alias ktn="kubectl top node"
+alias kgn="kubectl get nodes"
+alias kgpn="kubectl get pods -n"
+alias kd="kubectl describe"
+alias kdp="kubectl describe pod"
+alias kl="kubectl logs"
 alias ducks='du -cksh * | sort -hr | head -n 15'
 
 . /usr/local/etc/profile.d/z.sh
@@ -112,17 +124,17 @@ fortune | cowsay
 export GPG_TTY=$(tty)
 export HELM_HOME=~/helm
 
-# Add local source
-source ~/.zshrc_override 
-
 eval $(thefuck --alias)
+export EDITOR=vim
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="/usr/local/anaconda3/bin:$PATH"
 export PATH="./node_modules/.bin:$PATH"
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Add local source
+source ~/.zshrc_override 
