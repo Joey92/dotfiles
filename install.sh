@@ -10,7 +10,7 @@ function install_OhMyZsh {
 
 function install_Brew {
 	/usr/local/bin/brew
-	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 	brew install $(< brew-packages)
 	brew cask install $(< brew-cask-packages)
 	# To install useful key bindings and fuzzy completion:
