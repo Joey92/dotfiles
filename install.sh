@@ -75,6 +75,7 @@ if [[ "$arg" == "-i" || "$arg" == "--install" ]]; then
 
 	"1")echo -e "Installing Oh-My-Zsh..."
 	install_OhMyZsh
+        install_PowerlineFont
 	;;
 
 	
